@@ -277,15 +277,6 @@ footer a:hover{color:var(--c-cyan);}
 .admin-head{padding:20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;}
 .admin-head h3{font-size:15px;}
 .admin-tabs{display:flex;border-bottom:1px solid var(--line);}
-.promo-banner{position:relative;width:100%;overflow:hidden;height:min(50vw,460px);min-height:150px;background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-.promo-banner.empty{height:auto;min-height:0;}
-.promo-banner-track{display:flex;width:100%;height:100%;transition:transform .8s cubic-bezier(.4,0,.2,1);}
-.promo-slide{position:relative;flex:0 0 100%;width:100%;height:100%;}
-.promo-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;}
-.promo-slide.placeholder-slide{position:static;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--text-2);font-size:12.5px;line-height:1.5;padding:26px 16px;min-height:64px;background:linear-gradient(120deg,rgba(0,240,255,.06),rgba(255,46,203,.06));}
-.promo-banner-dots{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:2;}
-.promo-banner-dots button{width:7px;height:7px;padding:0;border-radius:50%;border:none;background:rgba(255,255,255,.4);cursor:pointer;transition:.2s;}
-.promo-banner-dots button.active{background:var(--c-cyan);width:20px;border-radius:5px;}
 .admin-tabs button{flex:1;background:none;border:none;color:var(--text-1);padding:12px 4px;font-size:12px;font-family:var(--font-m);cursor:pointer;border-bottom:2px solid transparent;}
 .admin-tabs button.active{color:var(--c-cyan);border-color:var(--c-cyan);}
 .admin-body{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:16px;}
@@ -396,13 +387,6 @@ footer a:hover{color:var(--c-cyan);}
       </div>
     </div>
   </div>
-</section>
-
-<section class="promo-banner empty" id="promo-banner">
-  <div class="promo-banner-track" id="promo-banner-track">
-    <div class="promo-slide placeholder-slide" data-i18n="promo_banner_placeholder">Sube imágenes desde el panel admin (pestaña Imágenes) para activar este banner.</div>
-  </div>
-  <div class="promo-banner-dots" id="promo-banner-dots"></div>
 </section>
 
 <div class="banner">
@@ -618,13 +602,6 @@ footer a:hover{color:var(--c-cyan);}
     <div class="admin-row"><label>Fondo</label><input type="color" id="c-bg"></div>
   </div>
   <div class="admin-body" id="tab-images" style="display:none;">
-    <h4 data-i18n="admin_banner_label">Banner principal (página de inicio)</h4>
-    <p style="color:var(--text-1);font-size:12.5px;">Tamaño recomendado: <b>1774 × 887 px</b> (relación 2:1). También sirve cualquier imagen con esa proporción, por ejemplo 1600 × 800 px. Usa JPG o PNG, menos de 2MB cada una para que cargue rápido. La imagen se muestra completa, sin recortar textos ni logos. Puedes seleccionar varias imágenes a la vez — el banner rota automáticamente entre todas con transición.</p>
-    <div class="admin-row">
-      <label data-i18n="admin_banner_upload">Imágenes del banner</label>
-      <input type="file" accept="image/*" multiple onchange="uploadBannerImages(event)">
-    </div>
-    <div id="banner-status" style="color:var(--text-2);font-size:11.5px;margin:-4px 0 10px;"></div>
     <h4 data-i18n="admin_logo_label">Logo de la página</h4>
     <div class="admin-row admin-file-row">
       <label>Logo</label>
@@ -728,7 +705,6 @@ const I18N = {
     contact_desc:"Escríbenos por WhatsApp o abre el chat y te respondemos con una propuesta ajustada a tu operación.",
     contact_whatsapp:"💬 Escribir por WhatsApp", contact_chat:"🗨️ Abrir chat privado",
     footer_rights:"Todos los derechos reservados", visits_label:"Visitas: ",
-    promo_banner_placeholder:"Sube imágenes desde el panel admin (pestaña Imágenes) para activar este banner.",
     chat_title:"Chat privado con el admin", chat_placeholder:"Escribe tu mensaje…", chat_send:"Enviar",
     chat_autoreply:"Gracias por escribirnos. Un asesor revisará tu mensaje y te responderá pronto por WhatsApp.",
     admin_login_title:"Acceso administrador", admin_login_sub:"Ingresa la contraseña para editar la página.", admin_login_btn:"Entrar",
@@ -737,7 +713,7 @@ const I18N = {
     admin_tab_content:"Contenido", admin_tab_colors:"Colores", admin_tab_images:"Imágenes", admin_tab_icons:"Íconos", admin_tab_docs:"Brochures", admin_tab_messages:"Mensajes",
     admin_edit_hint:"Modo edición de texto", admin_toggle_edit:"Editar textos en la página",
     admin_whatsapp_label:"Número de WhatsApp", admin_colors_label:"Paleta neón", admin_images_label:"Reemplazar imágenes",
-    admin_banner_label:"Banner principal (página de inicio)", admin_banner_upload:"Imágenes del banner",
+    
     admin_logo_label:"Logo de la página", admin_frame_images_label:"Imágenes dentro del frame por negocio",
     admin_icons_label:"Íconos de servicios", admin_docs_label:"Brochures descargables",
     admin_messages_label:"Mensajes recibidos por el chat",
@@ -775,7 +751,6 @@ const I18N = {
     contact_desc:"Write to us on WhatsApp or open the chat and we'll get back to you with a proposal tailored to your operation.",
     contact_whatsapp:"💬 Message us on WhatsApp", contact_chat:"🗨️ Open private chat",
     footer_rights:"All rights reserved", visits_label:"Visits: ",
-    promo_banner_placeholder:"Upload images from the admin panel (Images tab) to activate this banner.",
     chat_title:"Private chat with the admin", chat_placeholder:"Type your message…", chat_send:"Send",
     chat_autoreply:"Thanks for reaching out. An advisor will review your message and reply soon on WhatsApp.",
     admin_login_title:"Admin access", admin_login_sub:"Enter the password to edit the page.", admin_login_btn:"Enter",
@@ -784,7 +759,7 @@ const I18N = {
     admin_tab_content:"Content", admin_tab_colors:"Colors", admin_tab_images:"Images", admin_tab_icons:"Icons", admin_tab_docs:"Brochures", admin_tab_messages:"Messages",
     admin_edit_hint:"Text edit mode", admin_toggle_edit:"Edit text on the page",
     admin_whatsapp_label:"WhatsApp number", admin_colors_label:"Neon palette", admin_images_label:"Replace images",
-    admin_banner_label:"Home banner", admin_banner_upload:"Banner images",
+    
     admin_logo_label:"Site logo", admin_frame_images_label:"Images inside each business frame",
     admin_icons_label:"Service icons", admin_docs_label:"Downloadable brochures",
     admin_messages_label:"Messages received via chat",
@@ -822,7 +797,6 @@ const I18N = {
     contact_desc:"Escreva pelo WhatsApp ou abra o chat e responderemos com uma proposta ajustada à sua operação.",
     contact_whatsapp:"💬 Falar no WhatsApp", contact_chat:"🗨️ Abrir chat privado",
     footer_rights:"Todos os direitos reservados", visits_label:"Visitas: ",
-    promo_banner_placeholder:"Envie imagens pelo painel admin (aba Imagens) para ativar este banner.",
     chat_title:"Chat privado com o admin", chat_placeholder:"Escreva sua mensagem…", chat_send:"Enviar",
     chat_autoreply:"Obrigado por escrever. Um consultor vai revisar sua mensagem e responder em breve pelo WhatsApp.",
     admin_login_title:"Acesso do administrador", admin_login_sub:"Digite a senha para editar a página.", admin_login_btn:"Entrar",
@@ -831,7 +805,7 @@ const I18N = {
     admin_tab_content:"Conteúdo", admin_tab_colors:"Cores", admin_tab_images:"Imagens", admin_tab_icons:"Ícones", admin_tab_docs:"Brochuras", admin_tab_messages:"Mensagens",
     admin_edit_hint:"Modo de edição de texto", admin_toggle_edit:"Editar textos na página",
     admin_whatsapp_label:"Número de WhatsApp", admin_colors_label:"Paleta neon", admin_images_label:"Substituir imagens",
-    admin_banner_label:"Banner principal (página inicial)", admin_banner_upload:"Imagens do banner",
+    
     admin_logo_label:"Logo do site", admin_frame_images_label:"Imagens dentro do quadro por negócio",
     admin_icons_label:"Ícones de serviços", admin_docs_label:"Brochuras para download",
     admin_messages_label:"Mensagens recebidas pelo chat",
@@ -919,7 +893,6 @@ function applyLang(lang){
   visitsEl.textContent = (dict.visits_label||'Visits: ') + (SETTINGS.visits || 0);
   localStorage.setItem(LANG_KEY, lang);
   applyOverridesToDom();
-  applyBanner();
 }
 document.querySelectorAll('[data-lang-btn]').forEach(b=>{
   b.addEventListener('click', ()=>applyLang(b.getAttribute('data-lang-btn')));
@@ -1008,72 +981,6 @@ async function uploadIcon(evt, key){
   }catch(e){
     console.error('Error subiendo el ícono a Supabase Storage', e);
     showToast('⚠ Error subiendo el ícono (revisa el bucket "site-assets")');
-  }
-}
-
-/* ============ home banner (horizontal, dinámico, con transición) ============ */
-let bannerTimer = null;
-let bannerIndex = 0;
-function applyBanner(){
-  const section = document.getElementById('promo-banner');
-  const track = document.getElementById('promo-banner-track');
-  const dots = document.getElementById('promo-banner-dots');
-  if(!section || !track || !dots) return;
-  const urls = getImages().banner || [];
-  clearInterval(bannerTimer);
-  if(!urls.length){
-    section.classList.add('empty');
-    track.innerHTML = '<div class="promo-slide placeholder-slide">'+escapeHtml(I18N[currentLang()].promo_banner_placeholder)+'</div>';
-    dots.innerHTML = '';
-    track.style.transform = 'translateX(0)';
-    return;
-  }
-  section.classList.remove('empty');
-  track.innerHTML = urls.map(u=>'<div class="promo-slide"><img src="'+u+'" alt=""></div>').join('');
-  dots.innerHTML = urls.map((u,i)=>'<button onclick="gotoBannerSlide('+i+')" class="'+(i===0?'active':'')+'" aria-label="Slide '+(i+1)+'"></button>').join('');
-  bannerIndex = 0;
-  track.style.transform = 'translateX(0)';
-  if(urls.length>1){
-    bannerTimer = setInterval(()=>{ gotoBannerSlide((bannerIndex+1) % urls.length); }, 4500);
-  }
-}
-function gotoBannerSlide(i){
-  const urls = getImages().banner || [];
-  if(!urls.length) return;
-  bannerIndex = i;
-  const track = document.getElementById('promo-banner-track');
-  if(track) track.style.transform = 'translateX(-'+(i*100)+'%)';
-  document.querySelectorAll('#promo-banner-dots button').forEach((b,idx)=>b.classList.toggle('active', idx===i));
-}
-function renderBannerStatus(){
-  const el = document.getElementById('banner-status');
-  if(!el) return;
-  const n = (getImages().banner || []).length;
-  el.textContent = n ? (n+' imagen'+(n>1?'es':'')+' cargadas en el banner') : 'Sin imágenes propias (el banner queda oculto).';
-}
-async function uploadBannerImages(evt){
-  const files = Array.from(evt.target.files || []);
-  if(!files.length) return;
-  if(!sb){ showToast('⚠ Supabase no está conectado'); return; }
-  showToast('Subiendo imágenes del banner…');
-  try{
-    const urls = [];
-    for(const file of files){
-      const ext = (file.name.split('.').pop()||'jpg').toLowerCase();
-      const path = 'banner-'+Date.now()+'-'+Math.random().toString(36).slice(2,7)+'.'+ext;
-      const { error: upErr } = await sb.storage.from('site-assets').upload(path, file, { upsert:true, cacheControl:'3600' });
-      if(upErr) throw upErr;
-      const { data } = sb.storage.from('site-assets').getPublicUrl(path);
-      urls.push(data.publicUrl);
-    }
-    const images = { ...getImages(), banner: urls };
-    await saveSettings({ images });
-    applyBanner();
-    renderBannerStatus();
-    showToast(I18N[currentLang()].saved_toast);
-  }catch(e){
-    console.error('Error subiendo imágenes del banner a Supabase Storage', e);
-    showToast('⚠ Error subiendo las imágenes del banner (revisa el bucket "site-assets")');
   }
 }
 
@@ -1384,7 +1291,6 @@ async function openAdmin(){
   if(logoPrev && imgs.logo) logoPrev.src = imgs.logo;
   renderAdminMessages();
   renderDocsStatus();
-  renderBannerStatus();
 }
 function closeAdmin(){ document.getElementById('admin-panel').classList.remove('open'); toggleEditMode(false); document.getElementById('edit-toggle').checked=false; }
 function switchTab(name){
@@ -1471,7 +1377,6 @@ async function countVisit(){
   applyLogo();
   applyBrochures();
   renderExtraMedia();
-  applyBanner();
   applyLang(localStorage.getItem(LANG_KEY) || 'es');
 })();
 </script>
