@@ -174,6 +174,8 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:16px 2
 .icon-preview[src=""],.icon-preview:not([src]){visibility:hidden;}
 .admin-file-row{display:flex;align-items:center;gap:8px;}
 .admin-subhead{font-size:11px;color:var(--c-cyan);font-family:var(--font-m);letter-spacing:.08em;margin-top:6px;text-transform:uppercase;}
+.custom-svc-box{background:#0d1224;border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;}
+.custom-svc-box textarea{width:100%;resize:vertical;font-family:var(--font-b);}
 .admin-doc-status{font-size:11px;color:var(--text-2);}
 .admin-doc-status a{color:var(--c-cyan);}
 
@@ -210,14 +212,16 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:16px 2
 .svc-media{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px;}
 .svc-media img{border-radius:8px;border:1px solid var(--line);cursor:zoom-in;aspect-ratio:16/10;object-fit:cover;object-position:top;}
 .svc-media img.single{grid-column:1/-1;aspect-ratio:16/8;}
+.svc-banner{width:100%;height:auto;display:block;border-radius:10px;border:1px solid var(--line);margin-top:6px;cursor:zoom-in;}
 .svc-actions{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap;padding-top:8px;}
 
 /* ---------- about ---------- */
-.about .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center;}
-.about-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:34px;}
+.about-grid{padding:0;display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center;}
+.about-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:34px;min-width:0;}
 .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px;}
+.stat{min-width:0;}
 .stat b{font-family:var(--font-d);font-size:30px;color:var(--c-cyan);display:block;}
-.stat span{color:var(--text-1);font-size:13px;font-family:var(--font-m);letter-spacing:.06em;}
+.stat span{color:var(--text-1);font-size:13px;font-family:var(--font-m);letter-spacing:.06em;word-break:break-word;}
 .about p{color:var(--text-1);margin-top:16px;font-size:17px;}
 
 /* ---------- contact ---------- */
@@ -297,13 +301,18 @@ footer a:hover{color:var(--c-cyan);}
   .hero .wrap{grid-template-columns:1fr;}
   .hero-visual{height:280px;order:-1;}
   .svc-grid{grid-template-columns:1fr 1fr;}
-  .about .wrap{grid-template-columns:1fr;}
+  .about-grid{grid-template-columns:1fr;gap:32px;}
   .nav-links{display:none;}
 }
 @media(max-width:600px){
   .svc-grid{grid-template-columns:1fr;}
   section{padding:70px 0;}
   nav{padding:14px 18px;}
+  .about-card{padding:22px;}
+  .about-stats{gap:14px;}
+  .stat b{font-size:26px;}
+  .svc-media{grid-template-columns:1fr;}
+  .svc-media img{aspect-ratio:16/10;}
 }
 </style>
 </head>
@@ -411,6 +420,7 @@ footer a:hover{color:var(--c-cyan);}
         <div class="svc-icon" data-icon-key="svc1">🏨</div>
         <h3 class="editable" data-key="svc1_title" data-i18n="svc1_title">Cashless para hoteles</h3>
         <p class="editable" data-key="svc1_desc" data-i18n="svc1_desc">Pulseras y tarjetas NFC que reemplazan el efectivo dentro del hotel: los huéspedes pagan bar, restaurante y actividades con un solo toque, y la administración ve el consumo consolidado en tiempo real.</p>
+        <img class="svc-banner zoomable" data-banner="svc1" style="display:none" alt="Banner">
         <div class="svc-media" data-media="svc1"></div>
         <div class="svc-actions" data-actions="svc1">
           <a class="btn btn-outline btn-sm brochure-link" data-brochure="svc1" href="#" download style="display:none" data-i18n="svc_download">Descargar brochure ↓</a>
@@ -422,6 +432,7 @@ footer a:hover{color:var(--c-cyan);}
         <div class="svc-icon" data-icon-key="svc2">📶</div>
         <h3 class="editable" data-key="svc2_title" data-i18n="svc2_title">NFC y cobros en eventos</h3>
         <p class="editable" data-key="svc2_desc" data-i18n="svc2_desc">Escaneo NFC/QR para el control de entradas en conciertos y eventos, con cobros cashless en punto de venta: cada acceso y cada consumo queda validado y registrado al instante.</p>
+        <img class="svc-banner zoomable" data-banner="svc2" style="display:none" alt="Banner">
         <div class="svc-media" data-media="svc2"></div>
         <div class="svc-actions" data-actions="svc2">
           <a class="btn btn-outline btn-sm brochure-link" data-brochure="svc2" href="#" download style="display:none" data-i18n="svc_download">Descargar brochure ↓</a>
@@ -433,6 +444,7 @@ footer a:hover{color:var(--c-cyan);}
         <div class="svc-icon" data-icon-key="svc3">🚚</div>
         <h3 class="editable" data-key="svc3_title" data-i18n="svc3_title">Preventa y seguimiento de pedidos</h3>
         <p class="editable" data-key="svc3_desc" data-i18n="svc3_desc">Apps web para distribuidoras: preventa de productos, generación de pedidos y seguimiento de la ruta hasta la entrega, con visibilidad para el vendedor, la bodega y el cliente final.</p>
+        <img class="svc-banner zoomable" data-banner="svc3" style="display:none" alt="Banner">
         <div class="svc-media" data-media="svc3"></div>
         <div class="svc-actions" data-actions="svc3">
           <a class="btn btn-outline btn-sm brochure-link" data-brochure="svc3" href="#" download style="display:none" data-i18n="svc_download">Descargar brochure ↓</a>
@@ -444,6 +456,7 @@ footer a:hover{color:var(--c-cyan);}
         <div class="svc-icon" data-icon-key="svc4">🚗</div>
         <h3 class="editable" data-key="svc4_title" data-i18n="svc4_title">Control vehicular y parqueaderos</h3>
         <p class="editable" data-key="svc4_desc" data-i18n="svc4_desc">Registro de ingreso y salida de vehículos, tiempo de permanencia, tarifas automáticas y ocupación en vivo — ideal para parqueaderos, conjuntos y centros comerciales.</p>
+        <img class="svc-banner zoomable" data-banner="svc4" style="display:none" alt="Banner">
         <div class="svc-media" data-media="svc4"></div>
         <div class="svc-actions" data-actions="svc4">
           <a class="btn btn-outline btn-sm brochure-link" data-brochure="svc4" href="#" download style="display:none" data-i18n="svc_download">Descargar brochure ↓</a>
@@ -455,6 +468,7 @@ footer a:hover{color:var(--c-cyan);}
         <div class="svc-icon" data-icon-key="svc5">🗳️</div>
         <h3 class="editable" data-key="svc5_title" data-i18n="svc5_title">Asamblea Virtual para conjuntos</h3>
         <p class="editable" data-key="svc5_desc" data-i18n="svc5_desc">Plataforma propia para que la copropiedad realice asambleas virtuales: quórum verificado por coeficiente, votación y resultados en tiempo real, y transmisión de audio integrada — sin depender de Zoom ni de licencias externas.</p>
+        <img class="svc-banner zoomable" data-banner="svc5" style="display:none" alt="Banner">
         <div class="svc-media" data-media="svc5"></div>
         <div class="svc-actions">
           <a class="btn btn-outline btn-sm brochure-link" data-brochure="svc5" data-default-href="assets/brochure-asamblea-virtual.pdf" href="assets/brochure-asamblea-virtual.pdf" download data-i18n="svc_download">Descargar brochure ↓</a>
@@ -466,11 +480,8 @@ footer a:hover{color:var(--c-cyan);}
         <div class="svc-icon" data-icon-key="svc6">🎟️</div>
         <h3 class="editable" data-key="svc6_title" data-i18n="svc6_title">Plataforma de eventos cashless</h3>
         <p class="editable" data-key="svc6_desc" data-i18n="svc6_desc">Venta de tickets, control de ingreso por QR/NFC y consumos dentro del evento, todo desde un mismo panel: aforo, ventas por vendedor y estadísticas en tiempo real.</p>
-        <div class="svc-media">
-          <img class="zoomable" src="assets/eventos1.png" alt="Panel de administración de eventos">
-          <img class="zoomable" src="assets/eventos2.png" alt="Vistas de la plataforma de eventos">
-          <img class="zoomable single" src="assets/tickets_cliente.png" alt="Ticket digital del cliente">
-        </div>
+        <img class="svc-banner zoomable" data-banner="svc6" style="display:none" alt="Banner">
+        <div class="svc-media" data-media="svc6"></div>
         <div class="svc-actions">
           <a class="btn btn-outline btn-sm brochure-link" data-brochure="svc6" data-default-href="assets/brochure-cashless-ticketing.pdf" href="assets/brochure-cashless-ticketing.pdf" download data-i18n="svc_download">Descargar brochure ↓</a>
         </div>
@@ -481,10 +492,8 @@ footer a:hover{color:var(--c-cyan);}
         <div class="svc-icon" data-icon-key="svc7">🥊</div>
         <h3 class="editable" data-key="svc7_title" data-i18n="svc7_title">Apps para entrenadores personales</h3>
         <p class="editable" data-key="svc7_desc" data-i18n="svc7_desc">Plataforma para coaches y gimnasios: programación de ejercicios, calendario de entrenamiento, medidas corporales y progreso de cada cliente, todo desde el celular del entrenador.</p>
-        <div class="svc-media">
-          <img class="zoomable" src="assets/ring1.jpeg" alt="Panel del coach - calendario">
-          <img class="zoomable" src="assets/ring2.png" alt="Selección de perfil cliente o coach">
-        </div>
+        <img class="svc-banner zoomable" data-banner="svc7" style="display:none" alt="Banner">
+        <div class="svc-media" data-media="svc7"></div>
         <div class="svc-actions">
           <a class="btn btn-outline btn-sm brochure-link" data-brochure="svc7" href="#" download style="display:none" data-i18n="svc_download">Descargar brochure ↓</a>
         </div>
@@ -500,7 +509,7 @@ footer a:hover{color:var(--c-cyan);}
       <span class="eyebrow" data-i18n="about_eyebrow">◆ Nosotros</span>
       <h2 data-i18n="about_title">Software propio, hecho desde Santa Marta</h2>
     </div>
-    <div class="wrap" style="padding:0;display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center;">
+    <div class="wrap about-grid">
       <div class="about-card">
         <div class="about-stats">
           <div class="stat"><b>+3</b><span data-i18n="about_stat1">AÑOS EN EL SECTOR TECH</span></div>
@@ -582,6 +591,7 @@ footer a:hover{color:var(--c-cyan);}
     <button data-tab="images" onclick="switchTab('images')" data-i18n="admin_tab_images">Imágenes</button>
     <button data-tab="icons" onclick="switchTab('icons')" data-i18n="admin_tab_icons">Íconos</button>
     <button data-tab="docs" onclick="switchTab('docs')" data-i18n="admin_tab_docs">Brochures</button>
+    <button data-tab="customsvc" onclick="switchTab('customsvc')" data-i18n="admin_tab_customsvc">Servicios</button>
     <button data-tab="messages" onclick="switchTab('messages')" data-i18n="admin_tab_messages">Mensajes</button>
   </div>
   <div class="admin-body" id="tab-content">
@@ -617,22 +627,42 @@ footer a:hover{color:var(--c-cyan);}
     <div class="admin-row"><label>Eventos 2</label><input type="file" accept="image/*" onchange="swapImage(event,'eventos2')"></div>
     <div class="admin-row"><label>Ticket cliente</label><input type="file" accept="image/*" onchange="swapImage(event,'tickets_cliente')"></div>
     <h4 data-i18n="admin_frame_images_label">Imágenes dentro del frame por negocio</h4>
-    <p style="color:var(--text-1);font-size:12.5px;">Sube hasta 2 imágenes para que aparezcan dentro de la tarjeta de cada negocio.</p>
+    <p style="color:var(--text-1);font-size:12.5px;">Sube hasta 3 imágenes para que aparezcan dentro de la tarjeta de cada negocio, y opcionalmente un banner ancho (se ajusta solo en móvil y PC, sin recortarse).</p>
     <div class="admin-subhead">01 · Hotelería</div>
     <div class="admin-row"><label>Imagen 1</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc1_img1')"></div>
     <div class="admin-row"><label>Imagen 2</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc1_img2')"></div>
+    <div class="admin-row"><label>Imagen 3</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc1_img3')"></div>
+    <div class="admin-row"><label>Banner</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc1_banner')"></div>
     <div class="admin-subhead">02 · Eventos NFC</div>
     <div class="admin-row"><label>Imagen 1</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc2_img1')"></div>
     <div class="admin-row"><label>Imagen 2</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc2_img2')"></div>
+    <div class="admin-row"><label>Imagen 3</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc2_img3')"></div>
+    <div class="admin-row"><label>Banner</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc2_banner')"></div>
     <div class="admin-subhead">03 · Distribución</div>
     <div class="admin-row"><label>Imagen 1</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc3_img1')"></div>
     <div class="admin-row"><label>Imagen 2</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc3_img2')"></div>
+    <div class="admin-row"><label>Imagen 3</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc3_img3')"></div>
+    <div class="admin-row"><label>Banner</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc3_banner')"></div>
     <div class="admin-subhead">04 · Movilidad</div>
     <div class="admin-row"><label>Imagen 1</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc4_img1')"></div>
     <div class="admin-row"><label>Imagen 2</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc4_img2')"></div>
+    <div class="admin-row"><label>Imagen 3</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc4_img3')"></div>
+    <div class="admin-row"><label>Banner</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc4_banner')"></div>
     <div class="admin-subhead">05 · Prop. horizontal</div>
     <div class="admin-row"><label>Imagen 1</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc5_img1')"></div>
     <div class="admin-row"><label>Imagen 2</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc5_img2')"></div>
+    <div class="admin-row"><label>Imagen 3</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc5_img3')"></div>
+    <div class="admin-row"><label>Banner</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc5_banner')"></div>
+    <div class="admin-subhead">06 · Eventos cashless</div>
+    <div class="admin-row"><label>Imagen 1</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc6_img1')"></div>
+    <div class="admin-row"><label>Imagen 2</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc6_img2')"></div>
+    <div class="admin-row"><label>Imagen 3</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc6_img3')"></div>
+    <div class="admin-row"><label>Banner</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc6_banner')"></div>
+    <div class="admin-subhead">07 · Fitness</div>
+    <div class="admin-row"><label>Imagen 1</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc7_img1')"></div>
+    <div class="admin-row"><label>Imagen 2</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc7_img2')"></div>
+    <div class="admin-row"><label>Imagen 3</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc7_img3')"></div>
+    <div class="admin-row"><label>Banner</label><input type="file" accept="image/*" onchange="uploadServiceImage(event,'svc7_banner')"></div>
   </div>
   <div class="admin-body" id="tab-icons" style="display:none;">
     <h4 data-i18n="admin_icons_label">Íconos de servicios</h4>
@@ -656,6 +686,12 @@ footer a:hover{color:var(--c-cyan);}
     <div class="admin-row"><label>06 · Eventos cashless</label><input type="file" accept=".pdf,.doc,.docx" onchange="uploadBrochure(event,'svc6')"></div>
     <div class="admin-row"><label>07 · Fitness</label><input type="file" accept=".pdf,.doc,.docx" onchange="uploadBrochure(event,'svc7')"></div>
     <div id="docs-status" style="display:flex;flex-direction:column;gap:4px;margin-top:6px;"></div>
+  </div>
+  <div class="admin-body" id="tab-customsvc" style="display:none;">
+    <h4 data-i18n="admin_customsvc_label">Servicios adicionales</h4>
+    <p style="color:var(--text-1);font-size:12.5px;">Agrega tantas tarjetas de servicio como necesites, además de las 7 iniciales. Cada una aparece al final de la cuadrícula de Servicios.</p>
+    <div id="custom-svc-list" style="display:flex;flex-direction:column;gap:14px;"></div>
+    <button class="btn btn-outline" style="width:100%;justify-content:center;" onclick="addCustomService()" data-i18n="admin_customsvc_add">+ Agregar servicio</button>
   </div>
   <div class="admin-body" id="tab-messages" style="display:none;">
     <h4 data-i18n="admin_messages_label">Mensajes recibidos por el chat</h4>
@@ -710,7 +746,8 @@ const I18N = {
     admin_login_title:"Acceso administrador", admin_login_sub:"Ingresa la contraseña para editar la página.", admin_login_btn:"Entrar",
     admin_wrong_pass:"Contraseña incorrecta",
     admin_panel_title:"Panel de administración",
-    admin_tab_content:"Contenido", admin_tab_colors:"Colores", admin_tab_images:"Imágenes", admin_tab_icons:"Íconos", admin_tab_docs:"Brochures", admin_tab_messages:"Mensajes",
+    admin_tab_content:"Contenido", admin_tab_colors:"Colores", admin_tab_images:"Imágenes", admin_tab_icons:"Íconos", admin_tab_docs:"Brochures", admin_tab_customsvc:"Servicios", admin_tab_messages:"Mensajes",
+    admin_customsvc_label:"Servicios adicionales", admin_customsvc_add:"+ Agregar servicio",
     admin_edit_hint:"Modo edición de texto", admin_toggle_edit:"Editar textos en la página",
     admin_whatsapp_label:"Número de WhatsApp", admin_colors_label:"Paleta neón", admin_images_label:"Reemplazar imágenes",
     
@@ -756,7 +793,8 @@ const I18N = {
     admin_login_title:"Admin access", admin_login_sub:"Enter the password to edit the page.", admin_login_btn:"Enter",
     admin_wrong_pass:"Wrong password",
     admin_panel_title:"Admin panel",
-    admin_tab_content:"Content", admin_tab_colors:"Colors", admin_tab_images:"Images", admin_tab_icons:"Icons", admin_tab_docs:"Brochures", admin_tab_messages:"Messages",
+    admin_tab_content:"Content", admin_tab_colors:"Colors", admin_tab_images:"Images", admin_tab_icons:"Icons", admin_tab_docs:"Brochures", admin_tab_customsvc:"Services", admin_tab_messages:"Messages",
+    admin_customsvc_label:"Additional services", admin_customsvc_add:"+ Add service",
     admin_edit_hint:"Text edit mode", admin_toggle_edit:"Edit text on the page",
     admin_whatsapp_label:"WhatsApp number", admin_colors_label:"Neon palette", admin_images_label:"Replace images",
     
@@ -802,7 +840,8 @@ const I18N = {
     admin_login_title:"Acesso do administrador", admin_login_sub:"Digite a senha para editar a página.", admin_login_btn:"Entrar",
     admin_wrong_pass:"Senha incorreta",
     admin_panel_title:"Painel de administração",
-    admin_tab_content:"Conteúdo", admin_tab_colors:"Cores", admin_tab_images:"Imagens", admin_tab_icons:"Ícones", admin_tab_docs:"Brochuras", admin_tab_messages:"Mensagens",
+    admin_tab_content:"Conteúdo", admin_tab_colors:"Cores", admin_tab_images:"Imagens", admin_tab_icons:"Ícones", admin_tab_docs:"Brochuras", admin_tab_customsvc:"Serviços", admin_tab_messages:"Mensagens",
+    admin_customsvc_label:"Serviços adicionais", admin_customsvc_add:"+ Adicionar serviço",
     admin_edit_hint:"Modo de edição de texto", admin_toggle_edit:"Editar textos na página",
     admin_whatsapp_label:"Número de WhatsApp", admin_colors_label:"Paleta neon", admin_images_label:"Substituir imagens",
     
@@ -823,7 +862,7 @@ const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE
 
 /* Cached copy of the row stored in Supabase (public.site_settings, id=1).
    This is the single source of truth for every visitor — not per-browser localStorage. */
-let SETTINGS = { overrides:{}, colors:{}, images:{}, icons:{}, whatsapp:'573192153328', visits:0 };
+let SETTINGS = { overrides:{}, colors:{}, images:{}, icons:{}, whatsapp:'573192153328', visits:0, custom_services:[] };
 let settingsLoaded = false;
 
 function getOverrides(){ return SETTINGS.overrides || {}; }
@@ -831,6 +870,7 @@ function getColors(){ return SETTINGS.colors || {}; }
 function getImages(){ return SETTINGS.images || {}; }
 function getIcons(){ return SETTINGS.icons || {}; }
 function getWa(){ return SETTINGS.whatsapp || '573192153328'; }
+function getCustomServices(){ return SETTINGS.custom_services || []; }
 
 function getSessionId(){
   let id = localStorage.getItem(SESSION_KEY);
@@ -849,7 +889,8 @@ async function loadSettings(){
         images: data.images || {},
         icons: data.icons || {},
         whatsapp: data.whatsapp || '573192153328',
-        visits: data.visits || 0
+        visits: data.visits || 0,
+        custom_services: data.custom_services || []
       };
     } else if(error){
       console.warn('Supabase: no se pudo leer site_settings (¿ya ejecutaste el SQL de configuración?)', error);
@@ -1020,16 +1061,132 @@ async function swapLogo(evt){
 }
 
 /* ============ imágenes extra dentro del frame de cada negocio ============ */
-const EXTRA_MEDIA_SERVICES = ['svc1','svc2','svc3','svc4','svc5'];
+const EXTRA_MEDIA_SERVICES = ['svc1','svc2','svc3','svc4','svc5','svc6','svc7'];
+/* Imágenes de fábrica para los servicios que ya traían fotos fijas — se usan
+   mientras el admin no suba sus propias imágenes desde el panel. */
+const DEFAULT_SVC_IMAGES = {
+  svc6: ['assets/eventos1.png','assets/eventos2.png','assets/tickets_cliente.png'],
+  svc7: ['assets/ring1.jpeg','assets/ring2.png']
+};
+function renderMediaGrid(el, urls){
+  if(!el) return;
+  if(!urls.length){ el.innerHTML=''; return; }
+  el.innerHTML = urls.map((u,i)=>{
+    const isLastOdd = (urls.length % 2 === 1) && (i === urls.length - 1);
+    return '<img class="zoomable'+(isLastOdd?' single':'')+'" src="'+u+'" alt="">';
+  }).join('');
+}
 function renderExtraMedia(){
   const imgs = getImages();
   EXTRA_MEDIA_SERVICES.forEach(key=>{
+    const bannerEl = document.querySelector('.svc-banner[data-banner="'+key+'"]');
+    if(bannerEl){
+      const bUrl = imgs[key+'_banner'];
+      if(bUrl){ bannerEl.src = bUrl; bannerEl.style.display='block'; }
+      else { bannerEl.removeAttribute('src'); bannerEl.style.display='none'; }
+    }
     const el = document.querySelector('.svc-media[data-media="'+key+'"]');
-    if(!el) return;
-    const urls = [imgs[key+'_img1'], imgs[key+'_img2']].filter(Boolean);
-    if(!urls.length){ el.innerHTML=''; return; }
-    el.innerHTML = urls.map(u=>'<img class="zoomable'+(urls.length===1?' single':'')+'" src="'+u+'" alt="">').join('');
+    const uploaded = [imgs[key+'_img1'], imgs[key+'_img2'], imgs[key+'_img3']].filter(Boolean);
+    const urls = uploaded.length ? uploaded : (DEFAULT_SVC_IMAGES[key] || []);
+    renderMediaGrid(el, urls);
   });
+}
+
+/* ============ servicios adicionales (agregados desde el admin) ============ */
+function renderCustomServices(){
+  const grid = document.querySelector('.svc-grid');
+  if(!grid) return;
+  grid.querySelectorAll('.svc-card-custom').forEach(el=>el.remove());
+  const tints = ['var(--c-cyan)','var(--c-magenta)','var(--c-purple)','var(--c-amber)'];
+  getCustomServices().forEach((s,idx)=>{
+    const card = document.createElement('div');
+    card.className = 'svc-card svc-card-custom';
+    card.style.setProperty('--tint', tints[idx % tints.length]);
+    const iconHtml = s.icon_img ? '<img src="'+s.icon_img+'" alt="">' : '✨';
+    const mediaUrls = [s.img1, s.img2, s.img3].filter(Boolean);
+    const mediaHtml = mediaUrls.map((u,i)=>{
+      const isLastOdd = (mediaUrls.length % 2 === 1) && (i === mediaUrls.length - 1);
+      return '<img class="zoomable'+(isLastOdd?' single':'')+'" src="'+u+'" alt="">';
+    }).join('');
+    card.innerHTML =
+      '<div class="svc-num">'+(String(idx+8).padStart(2,'0'))+' / EXTRA</div>'+
+      '<div class="svc-icon">'+iconHtml+'</div>'+
+      '<h3>'+escapeHtml(s.title||'')+'</h3>'+
+      '<p>'+escapeHtml(s.desc||'')+'</p>'+
+      (s.banner ? '<img class="svc-banner zoomable" src="'+s.banner+'" alt="">' : '')+
+      '<div class="svc-media">'+mediaHtml+'</div>';
+    grid.appendChild(card);
+  });
+}
+function renderCustomServiceAdmin(){
+  const list = document.getElementById('custom-svc-list');
+  if(!list) return;
+  const services = getCustomServices();
+  if(!services.length){
+    list.innerHTML = '<p style="color:var(--text-2);font-size:12.5px;">Todavía no has agregado servicios adicionales.</p>';
+    return;
+  }
+  list.innerHTML = '';
+  services.forEach((s,idx)=>{
+    const box = document.createElement('div');
+    box.className = 'custom-svc-box';
+    box.innerHTML =
+      '<div class="admin-row"><label>Título</label><input type="text" value="'+escapeHtml(s.title||'')+'" onchange="updateCustomService('+idx+',\'title\',this.value)"></div>'+
+      '<div class="admin-row" style="align-items:flex-start;"><label>Descripción</label><textarea rows="3" style="flex:1;background:#050813;border:1px solid var(--line);color:var(--text-0);border-radius:6px;padding:6px 8px;font-size:13px;" onchange="updateCustomService('+idx+',\'desc\',this.value)">'+escapeHtml(s.desc||'')+'</textarea></div>'+
+      '<div class="admin-row admin-file-row"><label>Ícono</label><span class="admin-file-row"><img class="icon-preview" src="'+(s.icon_img||'')+'" alt=""><input type="file" accept="image/*" onchange="uploadCustomImage(event,'+idx+',\'icon_img\')"></span></div>'+
+      '<div class="admin-row"><label>Imagen 1</label><input type="file" accept="image/*" onchange="uploadCustomImage(event,'+idx+',\'img1\')"></div>'+
+      '<div class="admin-row"><label>Imagen 2</label><input type="file" accept="image/*" onchange="uploadCustomImage(event,'+idx+',\'img2\')"></div>'+
+      '<div class="admin-row"><label>Imagen 3</label><input type="file" accept="image/*" onchange="uploadCustomImage(event,'+idx+',\'img3\')"></div>'+
+      '<div class="admin-row"><label>Banner</label><input type="file" accept="image/*" onchange="uploadCustomImage(event,'+idx+',\'banner\')"></div>'+
+      '<button class="btn btn-outline btn-sm" style="width:100%;justify-content:center;color:var(--c-magenta);" onclick="removeCustomService('+idx+')">🗑 Eliminar este servicio</button>';
+    list.appendChild(box);
+  });
+}
+async function addCustomService(){
+  const services = getCustomServices();
+  services.push({ title:'Nuevo servicio', desc:'Describe aquí este servicio.', icon_img:'', img1:'', img2:'', img3:'', banner:'' });
+  await saveSettings({ custom_services: services });
+  renderCustomServiceAdmin();
+  renderCustomServices();
+  showToast(I18N[currentLang()].saved_toast);
+}
+async function removeCustomService(idx){
+  const services = getCustomServices();
+  services.splice(idx,1);
+  await saveSettings({ custom_services: services });
+  renderCustomServiceAdmin();
+  renderCustomServices();
+  showToast(I18N[currentLang()].saved_toast);
+}
+async function updateCustomService(idx, field, value){
+  const services = getCustomServices();
+  if(!services[idx]) return;
+  services[idx][field] = value;
+  await saveSettings({ custom_services: services });
+  renderCustomServices();
+}
+async function uploadCustomImage(evt, idx, field){
+  const file = evt.target.files[0];
+  if(!file) return;
+  if(!sb){ showToast('⚠ Supabase no está conectado'); return; }
+  showToast('Subiendo imagen…');
+  try{
+    const ext = (file.name.split('.').pop()||'jpg').toLowerCase();
+    const path = 'custom-'+idx+'-'+field+'-'+Date.now()+'.'+ext;
+    const { error: upErr } = await sb.storage.from('site-assets').upload(path, file, { upsert:true, cacheControl:'3600' });
+    if(upErr) throw upErr;
+    const { data } = sb.storage.from('site-assets').getPublicUrl(path);
+    const services = getCustomServices();
+    if(!services[idx]) return;
+    services[idx][field] = data.publicUrl;
+    await saveSettings({ custom_services: services });
+    renderCustomServiceAdmin();
+    renderCustomServices();
+    showToast(I18N[currentLang()].saved_toast);
+  }catch(e){
+    console.error('Error subiendo imagen a Supabase Storage', e);
+    showToast('⚠ Error subiendo la imagen (revisa el bucket "site-assets")');
+  }
 }
 async function uploadServiceImage(evt, imgKey){
   const file = evt.target.files[0];
@@ -1291,15 +1448,17 @@ async function openAdmin(){
   if(logoPrev && imgs.logo) logoPrev.src = imgs.logo;
   renderAdminMessages();
   renderDocsStatus();
+  renderCustomServiceAdmin();
 }
 function closeAdmin(){ document.getElementById('admin-panel').classList.remove('open'); toggleEditMode(false); document.getElementById('edit-toggle').checked=false; }
 function switchTab(name){
   document.querySelectorAll('.admin-tabs button').forEach(b=>b.classList.toggle('active', b.getAttribute('data-tab')===name));
-  ['content','colors','images','icons','docs','messages'].forEach(t=>{
+  ['content','colors','images','icons','docs','customsvc','messages'].forEach(t=>{
     document.getElementById('tab-'+t).style.display = (t===name)?'flex':'none';
   });
   if(name==='messages') renderAdminMessages();
   if(name==='docs') renderDocsStatus();
+  if(name==='customsvc') renderCustomServiceAdmin();
 }
 function toggleEditMode(on){ document.body.classList.toggle('editmode', on); }
 async function renderAdminMessages(){
@@ -1377,6 +1536,7 @@ async function countVisit(){
   applyLogo();
   applyBrochures();
   renderExtraMedia();
+  renderCustomServices();
   applyLang(localStorage.getItem(LANG_KEY) || 'es');
 })();
 </script>
